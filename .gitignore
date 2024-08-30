@@ -36,6 +36,8 @@
 *.x86_64
 *.hex
 zig-out/
+google-cloud-cpp/vcpkg_installed/
+google-cloud-cpp/cmake-out/
 
 # Debug files
 *.dSYM/
