@@ -36,7 +36,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe.addIncludePath(.{ .src_path = .{ .owner = b, .sub_path = "src/" } });
+    exe.addIncludePath(.{ .src_path = .{ .owner = b, .sub_path = "cpp/" } });
     exe.addIncludePath(.{ .src_path = .{ .owner = b, .sub_path = "google-cloud-cpp/" } });
     exe.addIncludePath(.{ .src_path = .{
         .owner = b,
@@ -51,7 +51,7 @@ pub fn build(b: *std.Build) void {
         .sub_path = "google-cloud-cpp/cmake-out/vcpkg_installed/x64-linux/include/",
     } });
 
-    exe.addCSourceFile(.{ .file = .{ .src_path = .{ .owner = b, .sub_path = "src/bindings.cpp" } } });
+    exe.addCSourceFile(.{ .file = .{ .src_path = .{ .owner = b, .sub_path = "cpp/bindings.cpp" } } });
 
     exe.linkLibC();
     exe.linkLibCpp();
