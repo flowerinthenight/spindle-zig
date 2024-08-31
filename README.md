@@ -12,4 +12,5 @@ cd google-cloud-cpp/
 vcpkg install
 cmake -S . -B cmake-out/ \
   -DCMAKE_TOOLCHAIN_FILE=path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
+cmake --build cmake-out -- -j $(nproc)
 ```
