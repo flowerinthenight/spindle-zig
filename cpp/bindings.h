@@ -2,11 +2,13 @@
 #define BINDINGS_CPP_H
 
 #ifdef __cplusplus
-class Client {
+#include "google/cloud/spanner/client.h"
+
+class Proxy {
 public:
-  Client();
-  ~Client();
-  void hello();
+  Proxy();
+  ~Proxy();
+  void info(const char*, const char*, const char*);
 };
 #endif // __cplusplus
 
@@ -16,7 +18,7 @@ extern "C" {
 
   void* init();
   void release(void*);
-  void hello(void*);
+  void info(void*, const char*, const char*, const char*);
 
 #ifdef __cplusplus
 }

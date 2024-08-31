@@ -1,30 +1,34 @@
 #include "bindings.h"
 #include "google/cloud/spanner/client.h"
 #include <iostream>
+namespace spanner = ::google::cloud::spanner;
 
-Client::Client() {
+Proxy::Proxy() {
   std::cout << "constructor" << std::endl;
 }
 
-Client::~Client() {
+Proxy::~Proxy() {
   std::cout << "destructor" << std::endl;
 }
 
-void Client::hello() {
-  std::cout << "hello from cpp class" << std::endl;
+void Proxy::info(const char* project, const char* instance, const char* db) {
+  std::cout << "input: " << project << ", " << instance << ", " << db << std::endl;
+  auto database = spanner::Database("mobingi-main", "alphaus-prod", "main");
+  auto connection = spanner::MakeConnection(database);
+  auto client = spanner::Client(connection);
 }
 
 // Our C interface(s):
 
 void* init() {
-  return new (std::nothrow) Client();
+  return new (std::nothrow) Proxy();
 }
 
 void release(void* self) {
-  delete reinterpret_cast<Client*>(self);
+  delete reinterpret_cast<Proxy*>(self);
 }
 
-void hello(void* self) {
-  auto p = reinterpret_cast<Client*>(self);
-  p->hello();
+void info(void* self, const char* project, const char* instance, const char* db) {
+  auto p = reinterpret_cast<Proxy*>(self);
+  p->info(project, instance, db);
 }

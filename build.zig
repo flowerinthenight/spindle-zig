@@ -4,6 +4,11 @@ const std = @import("std");
 // declaratively construct a build graph that will be executed by an external
 // runner.
 pub fn build(b: *std.Build) void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var arena = std.heap.ArenaAllocator.init(gpa.allocator());
+    defer arena.deinit(); // release arena
+    const alloc = arena.allocator();
+
     // Standard target options allows the person running `zig build` to choose
     // what target to build for. Here we do not override the defaults, which
     // means any target is allowed, and the default is native. Other options
@@ -45,6 +50,31 @@ pub fn build(b: *std.Build) void {
         .root = b.path("cpp/"),
         .files = &.{"bindings.cpp"},
     });
+
+    const dirs: [5][]const u8 = .{
+        "google-cloud-cpp/cmake-out/google/cloud",
+        "google-cloud-cpp/cmake-out/google/cloud/spanner",
+        "google-cloud-cpp/cmake-out/external/googleapis",
+        "google-cloud-cpp/cmake-out/vcpkg_installed/x64-linux/lib",
+        "google-cloud-cpp/cmake-out/protos/google/cloud/spanner/testing",
+    };
+
+    for (dirs) |d| {
+        var children = std.fs.cwd().openDir(d, .{ .iterate = true }) catch return;
+        defer children.close();
+        var iter = children.iterate();
+        while (true) {
+            const item = iter.next() catch return;
+            if (item) |v| {
+                const bench = std.mem.eql(u8, v.name, "libbenchmark_main.a");
+                const ext = std.fs.path.extension(v.name);
+                if (std.mem.eql(u8, ext, ".a") and !bench) {
+                    const full = std.fmt.allocPrint(alloc, "{s}/{s}", .{ d, v.name }) catch return;
+                    exe.addObjectFile(b.path(full));
+                }
+            } else break;
+        }
+    }
 
     exe.linkLibCpp();
     exe.linkLibC();
@@ -91,6 +121,7 @@ pub fn build(b: *std.Build) void {
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
+        .filter = b.option([]const u8, "test-filter", "Filter strings for test"),
     });
 
     const run_exe_unit_tests = b.addRunArtifact(exe_unit_tests);

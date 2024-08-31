@@ -11,6 +11,7 @@ $ git submodule update --remote
 $ cd google-cloud-cpp/
 $ vcpkg install
 $ cmake -S . -B cmake-out/ \
-    -DCMAKE_TOOLCHAIN_FILE=$PATH_TO_VCPKG/scripts/buildsystems/vcpkg.cmake
+    -DCMAKE_TOOLCHAIN_FILE=$PATH_TO_VCPKG/scripts/buildsystems/vcpkg.cmake \
+    -DBUILD_TESTING=OFF -DGOOGLE_CLOUD_CPP_ENABLE_EXAMPLES=OFF
 $ cmake --build cmake-out -- -j $(nproc)
 ```
