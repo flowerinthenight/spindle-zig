@@ -51,12 +51,17 @@ pub fn build(b: *std.Build) void {
         .files = &.{"bindings.cpp"},
     });
 
-    const dirs: [5][]const u8 = .{
+    const dirs = [_][]const u8{
         "google-cloud-cpp/cmake-out/google/cloud",
+        "google-cloud-cpp/cmake-out/google/cloud/bigtable",
+        "google-cloud-cpp/cmake-out/google/cloud/pubsub",
+        "google-cloud-cpp/cmake-out/google/cloud/logging",
+        "google-cloud-cpp/cmake-out/google/cloud/iam",
+        "google-cloud-cpp/cmake-out/google/cloud/storage",
+        "google-cloud-cpp/cmake-out/google/cloud/bigquery",
         "google-cloud-cpp/cmake-out/google/cloud/spanner",
         "google-cloud-cpp/cmake-out/external/googleapis",
         "google-cloud-cpp/cmake-out/vcpkg_installed/x64-linux/lib",
-        "google-cloud-cpp/cmake-out/protos/google/cloud/spanner/testing",
     };
 
     for (dirs) |d| {
