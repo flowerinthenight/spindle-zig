@@ -1,3 +1,5 @@
+**Note**: Not working.
+
 ```sh
 # Adding submodule (tracking branch, not tag):
 $ git submodule add -b \
