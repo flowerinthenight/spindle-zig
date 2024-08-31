@@ -10,15 +10,21 @@ Client::~Client() {
   std::cout << "destructor" << std::endl;
 }
 
-// void* init() {
-//   return new (std::nothrow) Client();
-// }
+void Client::hello() {
+  std::cout << "hello from cpp class" << std::endl;
+}
 
-// void release(void* self) {
-//   delete reinterpret_cast<Client*>(self);
-// }
+// Our C interface(s):
 
-int hellocpp(int v) {
-  std::cout << "cpp:hello" << std::endl;
-  return v + NUM;
+void* init() {
+  return new (std::nothrow) Client();
+}
+
+void release(void* self) {
+  delete reinterpret_cast<Client*>(self);
+}
+
+void hello(void* self) {
+  auto p = reinterpret_cast<Client*>(self);
+  p->hello();
 }

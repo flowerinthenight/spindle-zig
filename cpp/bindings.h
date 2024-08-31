@@ -6,18 +6,20 @@ class Client {
 public:
   Client();
   ~Client();
+  void hello();
 };
 #endif // __cplusplus
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif // __cplusplus
 
-  #define NUM 2
-  int hellocpp(int v);
+  void* init();
+  void release(void*);
+  void hello(void*);
 
 #ifdef __cplusplus
 }
-#endif
+#endif // __cplusplus
 
 #endif // BINDINGS_CPP_H

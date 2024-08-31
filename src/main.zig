@@ -5,9 +5,8 @@ const c = @cImport({
 });
 
 pub fn main() !void {
-    const v = c.hellocpp(2);
-    print("ret={any}\n", .{v});
+    const obj: ?*anyopaque = c.init();
+    defer c.release(obj);
 
-    // const ptr: anyopaque = c.init();
-    // c.release(ptr);
+    c.hello(obj);
 }
