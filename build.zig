@@ -36,25 +36,18 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe.addIncludePath(.{ .src_path = .{ .owner = b, .sub_path = "cpp/" } });
-    exe.addIncludePath(.{ .src_path = .{ .owner = b, .sub_path = "google-cloud-cpp/" } });
-    exe.addIncludePath(.{ .src_path = .{
-        .owner = b,
-        .sub_path = "google-cloud-cpp/cmake-out/external/googleapis/",
-    } });
-    exe.addIncludePath(.{ .src_path = .{
-        .owner = b,
-        .sub_path = "google-cloud-cpp/cmake-out/google/cloud/spanner/",
-    } });
-    exe.addIncludePath(.{ .src_path = .{
-        .owner = b,
-        .sub_path = "google-cloud-cpp/cmake-out/vcpkg_installed/x64-linux/include/",
-    } });
+    exe.addIncludePath(b.path("cpp/"));
+    exe.addIncludePath(b.path("google-cloud-cpp/"));
+    exe.addIncludePath(b.path("google-cloud-cpp/cmake-out/external/googleapis/"));
+    exe.addIncludePath(b.path("google-cloud-cpp/cmake-out/google/cloud/spanner/"));
+    exe.addIncludePath(b.path("google-cloud-cpp/cmake-out/vcpkg_installed/x64-linux/include/"));
+    exe.addCSourceFiles(.{
+        .root = b.path("cpp/"),
+        .files = &.{"bindings.cpp"},
+    });
 
-    exe.addCSourceFile(.{ .file = .{ .src_path = .{ .owner = b, .sub_path = "cpp/bindings.cpp" } } });
-
-    exe.linkLibC();
     exe.linkLibCpp();
+    exe.linkLibC();
 
     // This declares intent for the executable to be installed into the
     // standard location when the user invokes the "install" step (the default

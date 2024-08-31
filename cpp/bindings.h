@@ -1,24 +1,23 @@
-#ifndef _BINDINGS_CPP_
-#define _BINDINGS_CPP_
+#ifndef BINDINGS_CPP_H
+#define BINDINGS_CPP_H
 
 #ifdef __cplusplus
-#define EXTERN_C extern "C"
-#else
-#define EXTERN_C
-#endif
-
-#ifdef __cplusplus
-#include "google/cloud/spanner/client.h"
-
 class Client {
- public:
+public:
   Client();
   ~Client();
 };
-
 #endif // __cplusplus
 
-#define NUM_1 1
-EXTERN_C int plus1(int a);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-#endif // _BINDINGS_CPP_
+  #define NUM 2
+  int hellocpp(int v);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif // BINDINGS_CPP_H
