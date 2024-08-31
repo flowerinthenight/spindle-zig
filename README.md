@@ -1,11 +1,11 @@
 ```sh
-# Adding submodule:
+# Adding submodule (tracking branch, not tag):
 git submodule add -b \
   v2.28.x https://github.com/googleapis/google-cloud-cpp.git \
   google-cloud-cpp
 git submodule update --remote
 
-# Build google-cloud-cpp:
+# Build google-cloud-cpp (via CMake, not bazel):
 # Clone 'https://github.com/microsoft/vcpkg',
 # run the corresponding bootstrap script, and add bin to $PATH.
 cd google-cloud-cpp/
