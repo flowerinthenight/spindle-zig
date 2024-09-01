@@ -43,19 +43,19 @@ pub fn build(b: *std.Build) void {
 
     exe.addIncludePath(b.path("cpp/"));
     exe.addIncludePath(b.path("google-cloud-cpp/"));
-    exe.addIncludePath(b.path("google-cloud-cpp/cmake-out/external/googleapis/"));
-    exe.addIncludePath(b.path("google-cloud-cpp/cmake-out/google/cloud/spanner/"));
-    exe.addIncludePath(b.path("google-cloud-cpp/cmake-out/vcpkg_installed/x64-linux/include/"));
+    exe.addIncludePath(b.path("google-cloud-cpp/out/external/googleapis/"));
+    exe.addIncludePath(b.path("google-cloud-cpp/out/google/cloud/spanner/"));
+    exe.addIncludePath(b.path("google-cloud-cpp/out/vcpkg_installed/x64-linux/include/"));
     exe.addCSourceFiles(.{
         .root = b.path("cpp/"),
         .files = &.{"bindings.cpp"},
     });
 
     const dirs = [_][]const u8{
-        "google-cloud-cpp/cmake-out/google/cloud",
-        "google-cloud-cpp/cmake-out/google/cloud/spanner",
-        "google-cloud-cpp/cmake-out/external/googleapis",
-        "google-cloud-cpp/cmake-out/vcpkg_installed/x64-linux/lib",
+        "google-cloud-cpp/out/google/cloud",
+        "google-cloud-cpp/out/google/cloud/spanner",
+        "google-cloud-cpp/out/external/googleapis",
+        "google-cloud-cpp/out/vcpkg_installed/x64-linux/lib",
     };
 
     for (dirs) |d| {

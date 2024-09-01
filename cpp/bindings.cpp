@@ -13,9 +13,9 @@ Proxy::~Proxy() {
 
 void Proxy::info(const char* project, const char* instance, const char* db) {
   std::cout << "input: " << project << ", " << instance << ", " << db << std::endl;
-  auto database = spanner::Database("mobingi-main", "alphaus-prod", "main");
-  auto connection = spanner::MakeConnection(database);
-  auto client = spanner::Client(connection);
+  // auto database = spanner::Database("mobingi-main", "alphaus-prod", "main");
+  // auto connection = spanner::MakeConnection(database);
+  // auto client = spanner::Client(connection);
 }
 
 // Our C interface(s):

@@ -1,4 +1,4 @@
-**Note**: Not working.
+**Note**: build not working.
 
 ```sh
 # Adding submodule (tracking branch, not tag):
@@ -12,8 +12,8 @@ $ git submodule update --remote
 # run the corresponding bootstrap script, and add bin to $PATH.
 $ cd google-cloud-cpp/
 $ vcpkg install
-$ cmake -S . -B cmake-out/ \
+$ cmake -S . -B out/ \
     -DCMAKE_TOOLCHAIN_FILE=$PATH_TO_VCPKG/scripts/buildsystems/vcpkg.cmake \
     -DGOOGLE_CLOUD_CPP_ENABLE -DBUILD_TESTING=OFF -DGOOGLE_CLOUD_CPP_ENABLE_EXAMPLES=OFF
-$ cmake --build cmake-out -- -j $(nproc)
+$ cmake --build out -- -j $(nproc)
 ```
