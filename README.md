@@ -23,5 +23,5 @@ $ cmake --build out -- -j $(nproc)
 # Build bindings:
 $ mkdir build && cd build/
 $ cmake -S .. -G "Unix Makefiles"
-$ cmake --build . -j 8
+$ cmake --build . -j ${NCPU:-4}
 ```
