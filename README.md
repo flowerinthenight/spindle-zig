@@ -19,4 +19,9 @@ $ cmake -S . -B out/ \
     -DGOOGLE_CLOUD_CPP_ENABLE_EXAMPLES=OFF \
     -DGOOGLE_CLOUD_CPP_ENABLE=spanner
 $ cmake --build out -- -j $(nproc)
+
+# Build bindings:
+$ mkdir build && cd build/
+$ cmake -S .. -G "Unix Makefiles"
+$ cmake --build . -j 8
 ```
