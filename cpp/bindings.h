@@ -10,9 +10,7 @@ public:
   ~Proxy();
   void info(const char*, const char*, const char*);
 };
-#endif // __cplusplus
 
-#ifdef __cplusplus
 extern "C" {
 #endif // __cplusplus
 

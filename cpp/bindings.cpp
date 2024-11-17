@@ -1,7 +1,7 @@
 #include "bindings.h"
 #include "google/cloud/spanner/client.h"
 #include <iostream>
-namespace spanner = ::google::cloud::spanner;
+// namespace spanner = ::google::cloud::spanner;
 
 Proxy::Proxy() {
   std::cout << "constructor" << std::endl;
