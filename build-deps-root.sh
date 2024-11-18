@@ -11,8 +11,8 @@ cd deps/abseil-cpp/ && rm -rfv cmake-out/ && \
         -DBUILD_SHARED_LIBS=yes \
         -S . -B cmake-out && \
     cmake --build cmake-out -- -j $(nproc) && \
-    cmake --build cmake-out --target install -- -j $(nproc) && \
-    ldconfig && \
+    sudo cmake --build cmake-out --target install -- -j $(nproc) && \
+    sudo ldconfig && \
     cd ${ROOT_DIR}/
 
 # protobuf
@@ -24,8 +24,8 @@ cd deps/protobuf/ && rm -rfv cmake-out/ && \
         -Dprotobuf_ABSL_PROVIDER=package \
         -S . -B cmake-out && \
     cmake --build cmake-out -- -j $(nproc) && \
-    cmake --build cmake-out --target install -- -j $(nproc) && \
-    ldconfig && \
+    sudo cmake --build cmake-out --target install -- -j $(nproc) && \
+    sudo ldconfig && \
     cd ${ROOT_DIR}/
 
 # grpc
@@ -43,8 +43,8 @@ cd deps/grpc/ && rm -rfv cmake-out/ && \
         -DgRPC_ZLIB_PROVIDER=package \
         -S . -B cmake-out && \
     cmake --build cmake-out -- -j $(nproc) && \
-    cmake --build cmake-out --target install -- -j $(nproc) && \
-    ldconfig && \
+    sudo cmake --build cmake-out --target install -- -j $(nproc) && \
+    sudo ldconfig && \
     cd ${ROOT_DIR}/
 
 # crc32c
@@ -57,8 +57,8 @@ cd deps/crc32c/ && rm -rfv cmake-out/ && \
         -DCRC32C_USE_GLOG=OFF \
         -S . -B cmake-out && \
     cmake --build cmake-out -- -j $(nproc) && \
-    cmake --build cmake-out --target install -- -j $(nproc) && \
-    ldconfig && \
+    sudo cmake --build cmake-out --target install -- -j $(nproc) && \
+    sudo ldconfig && \
     cd ${ROOT_DIR}/
 
 # nlohmann_json library
@@ -69,8 +69,8 @@ cd deps/json/ && rm -rfv cmake-out/ && \
         -DBUILD_TESTING=OFF \
         -DJSON_BuildTests=OFF \
         -S . -B cmake-out && \
-    cmake --build cmake-out --target install -- -j $(nproc) && \
-    ldconfig && \
+    sudo cmake --build cmake-out --target install -- -j $(nproc) && \
+    sudo ldconfig && \
     cd ${ROOT_DIR}/
 
 # opentelemetry-cpp
@@ -84,8 +84,8 @@ cd deps/opentelemetry-cpp/ && rm -rfv cmake-out/ && \
         -DOPENTELEMETRY_INSTALL=ON \
         -DOPENTELEMETRY_ABI_VERSION_NO=2 \
         -S . -B cmake-out && \
-    cmake --build cmake-out --target install -- -j $(nproc) && \
-    ldconfig && \
+    sudo cmake --build cmake-out --target install -- -j $(nproc) && \
+    sudo ldconfig && \
     cd ${ROOT_DIR}/
 
 # google-cloud-cpp
@@ -97,5 +97,6 @@ cd google-cloud-cpp/ && rm -rfv cmake-out/ && \
           -DGOOGLE_CLOUD_CPP_ENABLE_EXAMPLES=OFF \
           -DGOOGLE_CLOUD_CPP_ENABLE=spanner && \
     cmake --build cmake-out -- -j $(nproc) && \
-    cmake --build cmake-out --target install && \
+    sudo cmake --build cmake-out --target install && \
+    sudo ldconfig && \
     cd ${ROOT_DIR}/
