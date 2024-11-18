@@ -1,12 +1,12 @@
 #!/bin/bash
 
 ROOT_DIR=${PWD}
-rm -rfv deps/usr/ && mkdir -p deps/usr/
-# mkdir -p deps/abseil-cpp/ && cd deps/abseil-cpp/ && curl -fsSL https://github.com/abseil/abseil-cpp/archive/20240722.0.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
-# mkdir -p deps/protobuf/ && cd deps/protobuf/ && curl -fsSL https://github.com/protocolbuffers/protobuf/archive/v28.3.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
-# mkdir -p deps/grpc/ && cd deps/grpc/ && curl -fsSL https://github.com/grpc/grpc/archive/v1.67.0.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
-# mkdir -p deps/crc32c/ && cd deps/crc32c/ && curl -fsSL https://github.com/google/crc32c/archive/1.1.2.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
-# mkdir -p deps/json/ && cd deps/json/ && curl -fsSL https://github.com/nlohmann/json/archive/v3.11.3.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+rm -rfv deps/ && mkdir -p deps/usr/
+mkdir -p deps/abseil-cpp/ && cd deps/abseil-cpp/ && curl -fsSL https://github.com/abseil/abseil-cpp/archive/20240722.0.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+mkdir -p deps/protobuf/ && cd deps/protobuf/ && curl -fsSL https://github.com/protocolbuffers/protobuf/archive/v28.3.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+mkdir -p deps/grpc/ && cd deps/grpc/ && curl -fsSL https://github.com/grpc/grpc/archive/v1.67.0.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+mkdir -p deps/crc32c/ && cd deps/crc32c/ && curl -fsSL https://github.com/google/crc32c/archive/1.1.2.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+mkdir -p deps/json/ && cd deps/json/ && curl -fsSL https://github.com/nlohmann/json/archive/v3.11.3.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
 
 # abseil
 cd deps/abseil-cpp/ && rm -rfv cmake-out/ && \
