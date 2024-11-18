@@ -21,7 +21,5 @@ $ cmake -S . -B out/ \
 $ cmake --build out -- -j $(nproc)
 
 # Build bindings:
-$ mkdir build && cd build/
-$ cmake -S .. -DCMAKE_PREFIX_PATH=${PWD}/../deps/usr
-$ cmake --build . -j $(nproc)
+$ ./build-cpp.sh
 ```
