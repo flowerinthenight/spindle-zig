@@ -5,7 +5,7 @@
 $ git submodule add -b \
     v2.28.x https://github.com/googleapis/google-cloud-cpp.git \
     google-cloud-cpp
-$ git submodule update --remote
+$ git submodule update --init --recursive
 
 # Build google-cloud-cpp (via CMake, not bazel):
 # Clone 'https://github.com/microsoft/vcpkg',
