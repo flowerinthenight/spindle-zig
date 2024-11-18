@@ -14,7 +14,7 @@ RUN git clone https://github.com/flowerinthenight/spindle-zig && \
   mkdir -p deps/crc32c/ && cd deps/crc32c/ && curl -fsSL https://github.com/google/crc32c/archive/1.1.2.tar.gz | tar -xzf - --strip-components=1 && cd ../../ && \
   mkdir -p deps/json/ && cd deps/json/ && curl -fsSL https://github.com/nlohmann/json/archive/v3.11.3.tar.gz | tar -xzf - --strip-components=1 && cd ../../ && \
   mkdir -p deps/opentelemetry-cpp/ && cd deps/opentelemetry-cpp/ && curl -fsSL https://github.com/open-telemetry/opentelemetry-cpp/archive/v1.17.0.tar.gz | tar -xzf - --strip-components=1 && cd ../../ && \
-  ls -l deps/
+  ./build-deps-root.sh
 
 FROM debian:stable-slim
 RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl ca-certificates && rm -rf /var/lib/apt/lists/*
