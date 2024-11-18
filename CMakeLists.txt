@@ -24,7 +24,7 @@ target_include_directories(spindle
 
 target_link_libraries(spindle
                       PUBLIC google-cloud-cpp::spanner
-		                         absl_bad_any_cast_impl
+                             absl_bad_any_cast_impl
                              absl_bad_optional_access
                              absl_bad_variant_access
                              absl_base
