@@ -8,6 +8,7 @@ $ git submodule add -b \
 $ git submodule update --init --recursive
 
 # Build dependencies:
+# (Based on Ubuntu 22.04 LTS)
 $ ./build-deps.sh
 
 # Build bindings:
