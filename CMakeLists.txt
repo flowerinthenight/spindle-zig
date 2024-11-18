@@ -3,7 +3,6 @@
 cmake_minimum_required(VERSION 3.14)
 project(spindle)
 
-find_package(gRPC CONFIG REQUIRED)
 find_package(google_cloud_cpp_spanner REQUIRED)
 
 add_definitions(-w)
