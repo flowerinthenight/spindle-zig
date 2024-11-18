@@ -1,3 +1,4 @@
-rm -rfv build && mkdir build && cd build/
-cmake -S .. -DCMAKE_PREFIX_PATH=$PWD/../deps/usr
-cmake --build . -j $(nproc)
+ROOT_DIR=${PWD}
+rm -rfv cmake-out/
+cmake -S . -B cmake-out -DCMAKE_PREFIX_PATH=${ROOT_DIR}/deps/usr
+cmake --build cmake-out -- -j $(nproc)
