@@ -22,6 +22,6 @@ $ cmake --build out -- -j $(nproc)
 
 # Build bindings:
 $ mkdir build && cd build/
-$ cmake -S .. -G "Unix Makefiles"
+$ cmake -S .. -DCMAKE_PREFIX_PATH=${PWD}/../deps/usr
 $ cmake --build . -j $(nproc)
 ```
