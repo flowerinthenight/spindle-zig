@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ROOT_DIR=${PWD}
-# mkdir -p deps/usr/
+rm -rfv deps/usr/ && mkdir -p deps/usr/
 # mkdir -p deps/abseil-cpp/ && cd deps/abseil-cpp/ && curl -fsSL https://github.com/abseil/abseil-cpp/archive/20240722.0.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
 # mkdir -p deps/protobuf/ && cd deps/protobuf/ && curl -fsSL https://github.com/protocolbuffers/protobuf/archive/v28.3.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
 # mkdir -p deps/grpc/ && cd deps/grpc/ && curl -fsSL https://github.com/grpc/grpc/archive/v1.67.0.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
