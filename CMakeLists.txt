@@ -1,6 +1,6 @@
 # For building cpp/bindings only.
 
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.22)
 project(spindle)
 
 find_package(google_cloud_cpp_spanner REQUIRED)
