@@ -1,10 +1,10 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    var arena = std.heap.ArenaAllocator.init(gpa.allocator());
-    defer arena.deinit(); // release arena
-    const alloc = arena.allocator();
+    // var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    // var arena = std.heap.ArenaAllocator.init(gpa.allocator());
+    // defer arena.deinit(); // release arena
+    // const alloc = arena.allocator();
 
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
@@ -25,43 +25,44 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    exe.addIncludePath(b.path("cpp/"));
-    exe.addIncludePath(b.path("google-cloud-cpp/"));
-    exe.addIncludePath(b.path("google-cloud-cpp/out/external/googleapis/"));
-    exe.addIncludePath(b.path("google-cloud-cpp/out/google/cloud/spanner/"));
-    exe.addIncludePath(b.path("google-cloud-cpp/out/vcpkg_installed/x64-linux/include/"));
-    exe.addCSourceFiles(.{
-        .root = b.path("cpp/"),
-        .files = &.{"bindings.cpp"},
-    });
+    // exe.addIncludePath(b.path("cpp/"));
+    // exe.addIncludePath(b.path("google-cloud-cpp/"));
+    // exe.addIncludePath(b.path("google-cloud-cpp/out/external/googleapis/"));
+    // exe.addIncludePath(b.path("google-cloud-cpp/out/google/cloud/spanner/"));
+    // exe.addIncludePath(b.path("google-cloud-cpp/out/vcpkg_installed/x64-linux/include/"));
+    // exe.addCSourceFiles(.{
+    //     .root = b.path("cpp/"),
+    //     .files = &.{"bindings.cpp"},
+    // });
 
-    const dirs = [_][]const u8{
-        "google-cloud-cpp/out/google/cloud",
-        "google-cloud-cpp/out/google/cloud/spanner",
-        "google-cloud-cpp/out/external/googleapis",
-        "google-cloud-cpp/out/vcpkg_installed/x64-linux/lib",
-    };
+    // const dirs = [_][]const u8{
+    //     "google-cloud-cpp/out/google/cloud",
+    //     "google-cloud-cpp/out/google/cloud/spanner",
+    //     "google-cloud-cpp/out/external/googleapis",
+    //     "google-cloud-cpp/out/vcpkg_installed/x64-linux/lib",
+    // };
 
-    for (dirs) |d| {
-        var children = std.fs.cwd().openDir(d, .{ .iterate = true }) catch return;
-        defer children.close();
-        var iter = children.iterate();
-        while (true) {
-            const item = iter.next() catch return;
-            if (item) |v| {
-                const bench = std.mem.eql(u8, v.name, "libbenchmark_main.a");
-                const ext = std.fs.path.extension(v.name);
-                if (std.mem.eql(u8, ext, ".a") and !bench) {
-                    const full = std.fmt.allocPrint(alloc, "{s}/{s}", .{ d, v.name }) catch return;
-                    exe.addObjectFile(b.path(full));
-                }
-            } else break;
-        }
-    }
+    // for (dirs) |d| {
+    //     var children = std.fs.cwd().openDir(d, .{ .iterate = true }) catch return;
+    //     defer children.close();
+    //     var iter = children.iterate();
+    //     while (true) {
+    //         const item = iter.next() catch return;
+    //         if (item) |v| {
+    //             const bench = std.mem.eql(u8, v.name, "libbenchmark_main.a");
+    //             const ext = std.fs.path.extension(v.name);
+    //             if (std.mem.eql(u8, ext, ".a") and !bench) {
+    //                 const full = std.fmt.allocPrint(alloc, "{s}/{s}", .{ d, v.name }) catch return;
+    //                 exe.addObjectFile(b.path(full));
+    //             }
+    //         } else break;
+    //     }
+    // }
 
-    exe.linkLibCpp();
-    // exe.linkLibC();
-    // exe.linkSystemLibrary("c++");
+    exe.linkSystemLibrary("spindle");
+    exe.linkSystemLibrary("stdc++");
+    exe.addLibraryPath(b.path("cmake-out/"));
+    exe.addLibraryPath(b.path("deps/usr/lib/"));
 
     b.installArtifact(exe);
     const run_cmd = b.addRunArtifact(exe);

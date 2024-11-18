@@ -14,6 +14,8 @@ public:
 extern "C" {
 #endif // __cplusplus
 
+  int add(int, int);
+
   void* init();
   void release(void*);
   void info(void*, const char*, const char*, const char*);

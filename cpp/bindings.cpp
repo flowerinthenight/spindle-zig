@@ -20,6 +20,10 @@ void Proxy::info(const char* project, const char* instance, const char* db) {
 
 // Our C interface(s):
 
+int add(int a, int b) {
+  return a + b;
+}
+
 void* init() {
   return new (std::nothrow) Proxy();
 }
