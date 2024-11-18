@@ -3,6 +3,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(spindle)
 
+# find_package(Protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(google_cloud_cpp_spanner REQUIRED)
 
@@ -13,13 +14,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(sources ${CMAKE_SOURCE_DIR}/cpp/bindings.cpp
             ${CMAKE_SOURCE_DIR}/cpp/main.cpp)
 
-link_directories(${CMAKE_SOURCE_DIR}/deps/usr/lib)
+# link_directories(/usr/lib/x86_64-linux-gnu /usr/lib)
 add_executable(spindle ${sources})
 
 target_include_directories(spindle
                            PUBLIC cpp
                                   google-cloud-cpp
-                                  deps/usr/include
                                   google-cloud-cpp/cmake-out/external/googleapis
                                   google-cloud-cpp/cmake-out/google/cloud/spanner)
 

@@ -1,6 +1,12 @@
 #!/bin/bash
 
 ROOT_DIR=${PWD}
+# mkdir -p deps/usr/
+# mkdir -p deps/abseil-cpp/ && cd deps/abseil-cpp/ && curl -fsSL https://github.com/abseil/abseil-cpp/archive/20240722.0.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+# mkdir -p deps/protobuf/ && cd deps/protobuf/ && curl -fsSL https://github.com/protocolbuffers/protobuf/archive/v28.3.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+# mkdir -p deps/grpc/ && cd deps/grpc/ && curl -fsSL https://github.com/grpc/grpc/archive/v1.67.0.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+# mkdir -p deps/crc32c/ && cd deps/crc32c/ && curl -fsSL https://github.com/google/crc32c/archive/1.1.2.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
+# mkdir -p deps/json/ && cd deps/json/ && curl -fsSL https://github.com/nlohmann/json/archive/v3.11.3.tar.gz | tar -xzf - --strip-components=1 && cd ${ROOT_DIR}/
 
 # abseil
 cd deps/abseil-cpp/ && rm -rfv cmake-out/ && \
@@ -78,20 +84,20 @@ cd deps/json/ && rm -rfv cmake-out/ && \
     cd ${ROOT_DIR}/
 
 # opentelemetry-cpp
-cd deps/opentelemetry-cpp/ && rm -rfv cmake-out/ && \
-    cmake \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_PREFIX_PATH=${ROOT_DIR}/deps/usr \
-        -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}/deps/usr \
-        -DBUILD_SHARED_LIBS=yes \
-        -DWITH_EXAMPLES=OFF \
-        -DWITH_ABSEIL=ON \
-        -DBUILD_TESTING=OFF \
-        -DOPENTELEMETRY_INSTALL=ON \
-        -DOPENTELEMETRY_ABI_VERSION_NO=2 \
-        -S . -B cmake-out && \
-    cmake --build cmake-out --target install -- -j $(nproc) && \
-    cd ${ROOT_DIR}/
+# cd deps/opentelemetry-cpp/ && rm -rfv cmake-out/ && \
+#     cmake \
+#         -DCMAKE_BUILD_TYPE=Release \
+#         -DCMAKE_PREFIX_PATH=${ROOT_DIR}/deps/usr \
+#         -DCMAKE_INSTALL_PREFIX=${ROOT_DIR}/deps/usr \
+#         -DBUILD_SHARED_LIBS=yes \
+#         -DWITH_EXAMPLES=OFF \
+#         -DWITH_ABSEIL=ON \
+#         -DBUILD_TESTING=OFF \
+#         -DOPENTELEMETRY_INSTALL=ON \
+#         -DOPENTELEMETRY_ABI_VERSION_NO=2 \
+#         -S . -B cmake-out && \
+#     cmake --build cmake-out --target install -- -j $(nproc) && \
+#     cd ${ROOT_DIR}/
 
 # google-cloud-cpp
 cd google-cloud-cpp/ && rm -rfv cmake-out/ && \
